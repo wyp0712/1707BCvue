@@ -1,0 +1,95 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-10 14:48:34
+ * @LastEditTime: 2019-10-10 14:48:34
+ * @LastEditors: your name
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   
+   .header{
+     width: 100%;
+     height: 50px;
+     background: red;
+     /* position: sticky;
+     top:0;
+     left:0; */
+   }
+   .fixed {
+     position: fixed;
+     left:0;
+     top:0;
+   }
+   .box {
+     /* overflow-y: scroll; */
+     overflow: auto;
+   }
+  
+  </style>
+</head>
+<body>
+   
+  <div id="app" >
+    <div class="box" style="height: 3000px">
+        <div class="header"></div>
+    </div>
+
+
+  </div>
+
+
+  <script src="../libs/vue.js"></script>
+  <script>
+      
+     const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+
+        }
+      },
+      watch: {
+        
+      },
+      methods: {
+      },
+      computed: {
+      },
+      // 生命周期  函数
+      created() {
+        // 一般在此处放置请求数据的函数
+        console.log(this.$el)
+      },
+      mounted() {
+        // 在此处一般用来操作dom结构 dom 
+        console.log(this.$el)
+        const header = document.querySelector('.header');
+        const box = document.querySelector('.box')
+        window.addEventListener('scroll', () => {
+          console.log(document.documentElement.scrollTop)
+          let myTop = document.documentElement.scrollTop
+          if (myTop >= 60) {
+            header.classList.add('fixed')
+          } else {
+            header.classList.remove('fixed')
+          }
+        })
+      },
+      destroyed() {
+        
+      },
+     }) 
+
+
+
+  </script>
+
+</body>
+</html>

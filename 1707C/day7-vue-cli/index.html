@@ -1,0 +1,148 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-11 08:53:49
+ * @LastEditTime: 2019-10-11 09:09:04
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   
+   li{
+     width: 200px;
+     height: 45px;
+     margin: 5px;
+     cursor: pointer;
+     background: #eee;
+     float: left;
+     text-align: center;
+   }
+   .active {
+     background: red;
+     color: #fff;
+   }
+  
+  </style>
+</head>
+<body>
+   
+  <div id="app">
+    <ul > 
+      <li 
+      v-for="(item, index) in tabList" 
+      @click="bindTabEvent(item, index)" 
+      :class="{active: tabIndex == item.state}"
+      >{{item.title}}</li>
+    </ul>
+
+
+    {{getFullName}}
+    {{tabClass}}
+  </div>
+
+  <script src="./libs/vue.js"></script>
+  <script>
+    /*
+     
+    class绑定：三种方式：
+
+      1. 字符串方式： "变量"
+      2. 对象方式 "{类名:value}"
+      3. 数组方式 "[变量，变量]"
+
+    计算属性：
+     computed: {
+       // 方法/函数
+       getTotalCount() {
+         return 
+       }
+     }
+
+     在vue中有两种定义变量的方式：
+      1. 一般定义在data中
+      2. 也可以定义在计算属性中（有计算逻辑的变量）
+
+    生命周期：（函数/方法）  
+     
+
+    */
+
+     const vm = new Vue({
+       el: '#app',
+       data() { // 变量 数据
+         return {
+            a: 1,
+            tabClass: 'active',
+            errorClass: 'error',
+            tabList: [
+              {
+                title: 'vue',
+                state: 0
+              },
+              {
+                title: 'react',
+                state: 1
+              }
+            ],
+            tabIndex: 0,
+            firstName: 'wang',
+            lastName: 'devin'
+         }
+       },
+       computed: { // 缓存功能
+        getTotalCount() {
+          return this.b + this.c
+        },
+        getFullName() {
+          return this.firstName +" - "+ this.lastName
+        }
+       },
+       methods: {
+        bindTabEvent(item, index) {
+          this.tabIndex = index
+          
+          // this.tabList[this.preIndex].state = false
+          // item.state = true
+          // this.preIndex = index
+        }
+       },
+       beforeCreate() {
+        console.log(this.$el, 'beforeCreate')
+       },
+       created() {
+         // 放置ajax请求数据
+         console.log(this.$el, 'created')
+       },
+       beforeMount() {
+        console.log(this.$el, 'beforeMount')
+       },
+       mounted() {
+         // 一般操作dom的代码
+         console.log(this.$el, 'mounted')
+       },
+      //  beforeUpdate() {
+         
+      //  },
+      //  updated() {
+         
+      //  },
+      //  beforeDestroy() {
+         
+      //  },
+       destroyed() {
+       },
+
+     })
+
+
+  
+  
+  </script>
+</body>
+</html>
