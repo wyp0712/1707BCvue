@@ -10,10 +10,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
-    },
-    {
-      path: '/',
       name: 'home',
       component: () => import(/* webpackChunkName: "home" */'./pages/Home.vue'),
       children: [
